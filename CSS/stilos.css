@@ -1,0 +1,64 @@
+/*SELECTOR UNIVERSAL*/
+* {
+    margin: 0;
+    padding: 0;
+}
+  
+/*FUENTES*/
+  body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+}
+
+/*HEADER*/
+.logo {
+    width: 12%;
+    margin-top: 0px;
+    margin-bottom: 0%;
+    margin-left: 0px;
+    margin-right: 0%;
+}
+  
+.opciones-navbar {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 0%;
+    margin-left: 20px;
+    margin-right: 0%;
+}
+  
+.navbar-buscar {
+    margin-top: 10px;
+}
+  
+.buscar {
+    --bs-btn-color: #000000;
+    --bs-btn-border-color: #000;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #000000;
+    --bs-btn-hover-border-color: #000000;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #000000;
+    --bs-btn-active-border-color: #000000;
+    --bs-btn-disabled-color: #000000;
+    --bs-btn-disabled-border-color: #000000;
+}
+
+/*FOOTER*/
+footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: #000;
+    padding: 30px 0px 20px 0px;
+    margin-top: 50px;
+}
+footer ul {
+    list-style-type: none;
+}
+footer ul li a {
+    text-decoration: none;
+    color: #fff;
+}
