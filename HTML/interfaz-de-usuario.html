@@ -65,7 +65,7 @@
           </nav>
     </header>
 
-    <main>
+    <!-- <main>
         <section class="container main inicio-de-sesion-container animate__animated animate__pulse">
             <div class="card text-center inicio-de-sesion">
                 <div class="card-body">
@@ -73,18 +73,30 @@
                   <label for="nombre-de-usuario" class="d-flex"> 
                     Nombre de usuario
                   </label>
-                  <input class="form-control me-2" type="email" name="nombre-de-usuario" id="nombre de usuario" placeholder="Juan García"> <br>
+                  <input class="form-control me-2" type="email" name="nombre-de-usuario" id="nombre-de-usuario" placeholder="Juan García"> <br>
                   <label for="contrasena" class="d-flex">
                     Contraseña
                   </label>
-                  <input class="form-control me-2" type="password" name="contrasena" id="contraseña"> <br>
-                  <a href="#" class="btn btn-primary">Iniciar sesión</a> <br>
-                  o <br>
-                  <a href=""> Registrate acá </a>
+                  <input class="form-control me-2" type="password" name="contrasena" id="contrasena"> <br>
+                  <a href="#" id="iniciar-sesion" class="btn btn-primary">Iniciar sesión</a> <br>
                 </div>
+                <p id="mensaje"></p>
             </div>
-        </section>
-    </main>
+        </section> 
+    </main> -->
+
+    <!-- Formulario de inicio de sesión -->
+    <h2>Iniciar sesión</h2>
+    <form id="loginForm" onsubmit="iniciarSesion(event)">
+        <label for="nombre">Nombre de Usuario:</label>
+        <input type="text" id="nombre" required><br>
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" required><br>
+        <button type="submit">Iniciar sesión</button>
+    </form>
+    
+    <!-- Mensaje de bienvenida o cierre de sesión -->
+    <p id="mensajeLogin"></p>
 
     <!-- conexión con js de boostrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@ 5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
