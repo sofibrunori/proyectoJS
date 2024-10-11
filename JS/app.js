@@ -21,8 +21,6 @@ const productos = [
 ];
 
 const productosContainer = document.getElementById('cont-productos');
-const carritoContainer = document.getElementById('cont-carrito');
-const carrito = [];
 
 productos.forEach(producto => {
     let productoHTML = `
@@ -35,3 +33,4 @@ productos.forEach(producto => {
     `;
     productosContainer.innerHTML += productoHTML;
 });
+
