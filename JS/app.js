@@ -1,4 +1,3 @@
-//PRODUCTOS
 class Producto {
     constructor(id, imagen, nombre, precio) {
         this.id = id;
@@ -20,17 +19,97 @@ const productos = [
     new Producto(9, '../MULTIMEDIA/angel-numbers.jpg', 'Angel Numbers', 6000),
 ];
 
-const productosContainer = document.getElementById('cont-productos');
 
-productos.forEach(producto => {
-    let productoHTML = `
+const productosContainer = document.getElementById('cont-productos');
+console.log ("productos", productosContainer)
+
+if (productosContainer) {
+    productos.forEach(producto => {
+        let productoHTML = `
+            <div class="producto" id=${producto.id}>
+                <img src="${producto.imagen}" alt="${producto.nombre}" width="100%">
+                <h3>${producto.nombre}</h3>
+                <p>Precio: $${producto.precio}</p>
+                <button id="agregar-carrito" class="btn" onclick="agregarAlCarrito(${producto.id})">Agregar al carrito</button>
+            </div>
+        `;
+        productosContainer.innerHTML += productoHTML
+    });
+}
+
+
+
+//INICIAR SESIÓN
+const iniciarSesion = document.getElementById("iniciar-sesion")
+console.log ("iniciar sesion", iniciarSesion)
+
+if (iniciarSesion) {
+    console.log ("dentro del if in ses")
+    iniciarSesion.addEventListener("click", function() {
+
+        let usuario = document.getElementById("nombre-de-usuario").value;
+      
+        if (usuario){
+          document.getElementById("mensaje").textContent = "Bienvenido " + usuario;
+        } else {
+          document.getElementById("mensaje").textContent = "Debes completar con tu nombre de usuario para iniciar sesión";
+        }
+    });
+}
+
+
+
+//AGREGAR AL CARRITO
+const carritoContainer = document.getElementById ("carrito")
+const carrito = []
+
+const agregarAlCarrito = (productoid) => {
+    const productoSeleccionado = productos.find(producto => producto.id === productoid) 
+    carrito.push(productoSeleccionado)
+    console.log ("carrito", carrito)
+    localStorage.setItem("carrito", JSON.stringify(carrito))
+}  
+
+let carritoStorage = localStorage.getItem("carrito")
+carritoStorage= JSON.parse(carritoStorage) || []
+console.log ("carrito", carritoStorage)
+let botonComprar = document.createElement('btn-comprar');
+
+if (carritoStorage.length > 0) {
+    console.log ("if mostrar carrito lleno")
+    carritoStorage.forEach(producto => {
+    let productoCarritoHTML = `
         <div class="producto">
             <img src="${producto.imagen}" alt="${producto.nombre}" width="100%">
             <h3>${producto.nombre}</h3>
             <p>Precio: $${producto.precio}</p>
-            <button id="agregar-carrito" class="btn" onclick="agregarAlCarrito(${producto.id})">Agregar al carrito</button>
         </div>
     `;
-    productosContainer.innerHTML += productoHTML;
-});
+    carritoContainer.innerHTML += productoCarritoHTML;
+    })
+    botonComprar.innerText = 'Comprar';
+    botonComprar.classList.add('btn');
+    carritoContainer.appendChild(botonComprar);
+
+} else {
+    console.log ("if mostrar carrito vacio")
+    let carritoVacioHTML = `
+            <img src="../MULTIMEDIA/carrito.jpg" alt="carrito de compras" class="img-fluid carrito-img">
+            <h6 class="carrito-texto"> Aún no tienes nada en tu carrito de compras </h6>
+    `;
+    carritoContainer.innerHTML = carritoVacioHTML
+}
+
+
+//SUMAR TOTAL
+botonComprar.addEventListener("click", () => {
+    let total = 0;
+    carritoStorage.forEach(producto => {
+    total += producto.precio;
+    });
+    let mensajeTotal = document.createElement('mensaje-comprar')
+    mensajeTotal.innerText = `El total es: $${total}`;
+    console.log('total', mensajeTotal)
+    carritoContainer.appendChild(mensajeTotal);
+})
 
