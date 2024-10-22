@@ -185,17 +185,14 @@ footer ul li a {
 
 
 /*CARRITO VACIO*/
-.carrito-container {
-    align-items: center;
-    flex-direction: column;
-    margin-top: 12%;
+.carrito-vacio {
+    position: fixed;
+    left: 35%;
+    top: 25%;
 }
 .carrito-img {
-    width: 50%;
-    margin-top: 0%;
-    margin-bottom: 0%;
-    margin-left: 20%;
-    margin-right: 0;
+    width: 80%;
+    margin-left: 5%;
 }
 .carrito-texto {
     text-align: center;
@@ -327,6 +324,12 @@ footer ul li a {
         margin-bottom: 15%;
         margin-top: 10%;
     }    
+    .carrito-vacio {
+        position: fixed;
+        left: 5%;
+        top: 25%;
+        z-index: -10;
+    }
     .inicio-de-sesion {
       width: 80%;
     }

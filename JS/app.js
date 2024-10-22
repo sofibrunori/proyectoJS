@@ -77,8 +77,10 @@ if (carritoStorage.length > 0) {
 } else {
     console.log ("if mostrar carrito vacio")
     let carritoVacioHTML = `
+        <div class= "carrito-vacio">
             <img src="../MULTIMEDIA/carrito.jpg" alt="carrito de compras" class="img-fluid carrito-img">
             <h6 class="carrito-texto"> Aún no tienes nada en tu carrito de compras </h6>
+        </div>
     `;
     carritoContainer.innerHTML = carritoVacioHTML
 }
@@ -93,7 +95,6 @@ const quitarCarrito = (productoid) => {
     localStorage.setItem("carrito", JSON.stringify(carrito))
 }
 */
-
 
 
 //SUMAR TOTAL
