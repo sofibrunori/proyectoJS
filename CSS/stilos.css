@@ -15,7 +15,7 @@
 
 
 /*FLEX*/
-.flex, .inicio-de-sesion-container, .carrito-container, .contacto-container, .datos-titulo, .main-productos, .main-index, footer ul,  
+.flex, #container-btn, .inicio-de-sesion-container, .contacto-container, .datos-titulo, .main-productos, .main-index, footer ul,  
 .ver-index {
     display: flex;
     flex-wrap: wrap;
@@ -102,7 +102,7 @@ footer ul li a {
  
 
 /*GALERIA*/
-.galeria {
+.galeria{
     display: grid;
     grid-template-rows: repeat(2, 1fr);
     grid-template-columns: repeat(5, 1fr);
@@ -184,7 +184,7 @@ footer ul li a {
 }
 
 
-/*CARRITO*/
+/*CARRITO VACIO*/
 .carrito-container {
     align-items: center;
     flex-direction: column;
@@ -202,6 +202,28 @@ footer ul li a {
 }
 
 
+/*CARRITO LLENO*/
+.carrito-container {
+    display: grid;
+    grid-template-rows: 50px repeat(1, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    align-items: end;
+    gap: 10%;
+    margin-top: 0%;
+    margin-bottom: 5%;
+}
+.titulo-carrito{
+    grid-column: 1/4;
+    justify-self: center;
+    margin-bottom: -4%;
+}
+.btn-comprar {
+    width: 20%;
+    margin-bottom: 5%;
+    margin-top: 13%;
+}
+
 /*INICIO DE SESIÓN*/
  .inicio-de-sesion {
     width: 50%;
@@ -209,6 +231,22 @@ footer ul li a {
     margin-bottom: 0%;
     margin-left: 0%;
     margin-right: 0%;
+}
+.inicio-de-sesion-container {
+    justify-content: center;
+}
+
+
+/*MENSAJES*/
+.mensajes {
+    position: fixed;
+    bottom: 25%;
+    width: 35%;
+    padding: 10%;
+    text-align: center;
+    border: 2px solid #000;
+    background-color: #fff;
+    z-index: 5;
 }
 
 
@@ -269,10 +307,33 @@ footer ul li a {
         margin-bottom: 2%;
     }
     .carrito-container {
-      margin-top: 35%;
+        display: grid;
+        grid-template-rows: auto;
+        grid-template-columns: repeat(1, 1fr);
+        justify-items: center;
+        gap: 30px;
+        padding-top: 10%;
+        margin-top: 0%;
+        margin-bottom: 0%;
     }
+    .titulo-carrito {
+        grid-column: 1/2;
+        justify-self: center;
+        margin-top: 4%;
+        margin-bottom: 2%;
+    }
+    .btn-comprar {
+        width: 40%;
+        margin-bottom: 15%;
+        margin-top: 10%;
+    }    
     .inicio-de-sesion {
       width: 80%;
+    }
+    .mensajes {
+        bottom: 40%;
+        width: 80%;
+        padding: 15%;
     }
   }
   

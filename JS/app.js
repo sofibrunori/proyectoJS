@@ -1,3 +1,4 @@
+//GALERIA DE PRODUCTOS
 class Producto {
     constructor(id, imagen, nombre, precio) {
         this.id = id;
@@ -39,26 +40,6 @@ if (productosContainer) {
 
 
 
-//INICIAR SESIÓN
-const iniciarSesion = document.getElementById("iniciar-sesion")
-console.log ("iniciar sesion", iniciarSesion)
-
-if (iniciarSesion) {
-    console.log ("dentro del if in ses")
-    iniciarSesion.addEventListener("click", function() {
-
-        let usuario = document.getElementById("nombre-de-usuario").value;
-      
-        if (usuario){
-          document.getElementById("mensaje").textContent = "Bienvenido " + usuario;
-        } else {
-          document.getElementById("mensaje").textContent = "Debes completar con tu nombre de usuario para iniciar sesión";
-        }
-    });
-}
-
-
-
 //AGREGAR AL CARRITO
 const carritoContainer = document.getElementById ("carrito")
 const carrito = []
@@ -87,9 +68,11 @@ if (carritoStorage.length > 0) {
     `;
     carritoContainer.innerHTML += productoCarritoHTML;
     })
+
+    const containerBtn = document.getElementById ("container-btn")
     botonComprar.innerText = 'Comprar';
-    botonComprar.classList.add('btn');
-    carritoContainer.appendChild(botonComprar);
+    botonComprar.classList.add('btn', 'btn-comprar');
+    containerBtn.appendChild(botonComprar);
 
 } else {
     console.log ("if mostrar carrito vacio")
@@ -100,6 +83,18 @@ if (carritoStorage.length > 0) {
     carritoContainer.innerHTML = carritoVacioHTML
 }
 
+/*
+<button id="quitar-carrito" class="btn" onclick="quitarCarrito(${producto.id})">Quitar del carrito</button>
+
+const quitarCarrito = (productoid) => {
+    const productoEliminado = productos.find(producto => producto.id === productoid) 
+    carritoStorage.pop(productoEliminado, 1)
+    console.log ("carrito eliminado", carrito)
+    localStorage.setItem("carrito", JSON.stringify(carrito))
+}
+*/
+
+
 
 //SUMAR TOTAL
 botonComprar.addEventListener("click", () => {
@@ -109,6 +104,7 @@ botonComprar.addEventListener("click", () => {
     });
     let mensajeTotal = document.createElement('mensaje-comprar')
     mensajeTotal.innerText = `El total es: $${total}`;
+    mensajeTotal.classList.add('mensajes');
     console.log('total', mensajeTotal)
     carritoContainer.appendChild(mensajeTotal);
 })
