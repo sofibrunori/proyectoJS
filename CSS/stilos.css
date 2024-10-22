@@ -15,7 +15,7 @@
 
 
 /*FLEX*/
-.flex, #container-btn, .inicio-de-sesion-container, .contacto-container, .datos-titulo, .main-productos, .main-index, footer ul,  
+.flex, .inicio-de-sesion-container, .contacto-container, .datos-titulo, .main-productos, .main-index, footer ul,  
 .ver-index {
     display: flex;
     flex-wrap: wrap;
@@ -206,19 +206,21 @@ footer ul li a {
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
     align-items: end;
-    gap: 10%;
-    margin-top: 0%;
-    margin-bottom: 5%;
+    gap: 5%;
+    margin-top: 5%;
+    margin-bottom: 30%;
 }
 .titulo-carrito{
     grid-column: 1/4;
     justify-self: center;
-    margin-bottom: -4%;
+    margin-bottom: 2%;
 }
 .btn-comprar {
-    width: 20%;
+    position: sticky;
+    margin-top: -10%;
     margin-bottom: 5%;
-    margin-top: 13%;
+    left: 40%;
+    width: 20%;
 }
 
 /*INICIO DE SESIÓN*/
@@ -323,6 +325,7 @@ footer ul li a {
         width: 40%;
         margin-bottom: 15%;
         margin-top: 10%;
+        left: 30%;
     }    
     .carrito-vacio {
         position: fixed;

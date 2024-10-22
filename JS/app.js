@@ -64,6 +64,7 @@ if (carritoStorage.length > 0) {
             <img src="${producto.imagen}" alt="${producto.nombre}" width="100%">
             <h3>${producto.nombre}</h3>
             <p>Precio: $${producto.precio}</p>
+            <button id="quitar-carrito" class="btn" onclick="quitarCarrito(${producto.id})">Quitar del carrito</button>
         </div>
     `;
     carritoContainer.innerHTML += productoCarritoHTML;
@@ -85,16 +86,18 @@ if (carritoStorage.length > 0) {
     carritoContainer.innerHTML = carritoVacioHTML
 }
 
-/*
-<button id="quitar-carrito" class="btn" onclick="quitarCarrito(${producto.id})">Quitar del carrito</button>
-
 const quitarCarrito = (productoid) => {
-    const productoEliminado = productos.find(producto => producto.id === productoid) 
-    carritoStorage.pop(productoEliminado, 1)
-    console.log ("carrito eliminado", carrito)
-    localStorage.setItem("carrito", JSON.stringify(carrito))
+    console.log ("carrito storage", carritoStorage)
+
+    const carritoGetItem = localStorage.getItem("carrito")
+    const prodParseado = JSON.parse(carritoGetItem)
+
+    let carritoFiltrado = prodParseado.filter ((producto) => producto.id !== productoid)
+    console.log ("carrito filtrado", carritoFiltrado)
+    
+    localStorage.setItem("carrito", JSON.stringify(carritoFiltrado))
 }
-*/
+
 
 
 //SUMAR TOTAL
