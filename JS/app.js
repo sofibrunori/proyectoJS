@@ -23,31 +23,17 @@ const productos = [
 const productosContainer = document.getElementById('cont-productos');
 console.log ("productos", productosContainer)
 
-//FETCH FORMA 1
-/*fetch("./JS/productos.json")
- .then(buscar => buscar.json()) 
- .then(agregar => {
-        productos = agregar,
-        mostrarProductos(productos)
- }) 
- .catch (error => console.error ("Error al cargar productos", error))
- 
- 
-//FETCH FORMA 2
-//let = productos = []
+//FETCH
 /*const agregarProductos = async () => {
-
     try {
-        const buscar = await fetch ("./JS/productos.json")
+        const buscar = await fetch("./DATA/productos.json")
         const agregar = await buscar.json()
-
         mostrarProductos(agregar)
-
     } catch {
         console.error ("Error al cargar productos")
     }
-}*/
-
+}
+*/
 
 //const mostrarProductos = (productos) => {
 if (productosContainer) {
@@ -195,7 +181,7 @@ botonComprar.addEventListener("click", () => {
     mensajeTotal.appendChild(botonFinalizar);
 
     const finalizar = botonFinalizar.onclick = () => {
-        Swal.fire("¡Gracias por tu compra!");
+        Swal.fire("¡Gracias por tu compra!\n Esperamos verte pronto");
         localStorage.clear()
     }
     finalizar()
