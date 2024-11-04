@@ -1,0 +1,56 @@
+[
+    {
+        "id" : 1,
+        "nombre": "Vogue",
+        "precio" : 3000,
+        "img": "../MULTIMEDIA/vogue.jpg"
+    },
+    {
+        "id" : 2,
+        "nombre": "Weekend",
+        "precio" : 2000,
+        "img": "../MULTIMEDIA/weekend.jpg"
+    },
+    {
+        "id" : 3,
+        "nombre": "Vino",
+        "precio" : 1500,
+        "img": "../MULTIMEDIA/vino.jpg"
+    },
+    {
+        "id" : 4,
+        "nombre": "Rules",
+        "precio" : 4000,
+        "img": "../MULTIMEDIA/rules.jpg"
+    },
+    {
+        "id" : 5,
+        "nombre": "New York",
+        "precio" : 5000,
+        "img": "../MULTIMEDIA/new-york.jpg"
+    },
+    {
+        "id" : 6,
+        "nombre": "I don´t care",
+        "precio" : 5000,
+        "img": "../MULTIMEDIA/new-york-times.jpg"
+    },
+    {
+        "id" : 7,
+        "nombre": "More Amore",
+        "precio" : 4500,
+        "img": "../MULTIMEDIA/more-amore.jpg"
+    },
+    {
+        "id" : 8,
+        "nombre": "Euphoria",
+        "precio" : 3000,
+        "img": "../MULTIMEDIA/euphoria.jpg"
+    },
+    {
+        "id" : 9,
+        "nombre": "Angel Numbers",
+        "precio" : 6000,
+        "img": "../MULTIMEDIA/angel-numbers.jpg"
+    }
+]

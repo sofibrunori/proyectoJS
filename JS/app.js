@@ -20,10 +20,36 @@ const productos = [
     new Producto(9, '../MULTIMEDIA/angel-numbers.jpg', 'Angel Numbers', 6000),
 ];
 
-
 const productosContainer = document.getElementById('cont-productos');
 console.log ("productos", productosContainer)
 
+//FETCH FORMA 1
+/*fetch("./JS/productos.json")
+ .then(buscar => buscar.json()) 
+ .then(agregar => {
+        productos = agregar,
+        mostrarProductos(productos)
+ }) 
+ .catch (error => console.error ("Error al cargar productos", error))
+ 
+ 
+//FETCH FORMA 2
+//let = productos = []
+/*const agregarProductos = async () => {
+
+    try {
+        const buscar = await fetch ("./JS/productos.json")
+        const agregar = await buscar.json()
+
+        mostrarProductos(agregar)
+
+    } catch {
+        console.error ("Error al cargar productos")
+    }
+}*/
+
+
+//const mostrarProductos = (productos) => {
 if (productosContainer) {
     productos.forEach(producto => {
         let productoHTML = `
@@ -34,9 +60,11 @@ if (productosContainer) {
                 <button id="agregar-carrito" class="btn" onclick="agregarAlCarrito(${producto.id})">Agregar al carrito</button>
             </div>
         `;
-        productosContainer.innerHTML += productoHTML
+       productosContainer.innerHTML += productoHTML
     });
 }
+//}
+//agregarProductos()
 
 
 
@@ -46,10 +74,24 @@ const carrito = []
 
 const agregarAlCarrito = (productoid) => {
     const productoSeleccionado = productos.find(producto => producto.id === productoid) 
-    carrito.push(productoSeleccionado)
-    console.log ("carrito", carrito)
-    localStorage.setItem("carrito", JSON.stringify(carrito))
-}  
+
+    if(carrito.some(producto => producto.id === productoid)) {
+        const indice = carrito.findIndex(producto => producto.id === productoid)
+        carrito[indice].cantidad++
+    } else {
+        productoSeleccionado.cantidad = 1
+        carrito.push(productoSeleccionado)
+        console.log ("carrito", carrito)
+        Toastify({
+            text: `Se agregó al carrito`,
+            className: "info",
+            style: {
+            background: "linear-gradient(to right, #ff6db1,#ffaada)",
+            }
+        }).showToast();
+        localStorage.setItem("carrito", JSON.stringify(carrito))
+    }
+}
 
 let carritoStorage = localStorage.getItem("carrito")
 carritoStorage= JSON.parse(carritoStorage) || []
@@ -57,6 +99,7 @@ console.log ("carrito", carritoStorage)
 let botonComprar = document.createElement('btn-comprar');
 
 if (carritoStorage.length > 0) {
+    carritoStorage.innerHTML = ""
     console.log ("if mostrar carrito lleno")
     carritoStorage.forEach(producto => {
     let productoCarritoHTML = `
@@ -64,6 +107,7 @@ if (carritoStorage.length > 0) {
             <img src="${producto.imagen}" alt="${producto.nombre}" width="100%">
             <h3>${producto.nombre}</h3>
             <p>Precio: $${producto.precio}</p>
+            <p>Cantidad: ${producto.cantidad}</p>
             <button id="quitar-carrito" class="btn" onclick="quitarCarrito(${producto.id})">Quitar del carrito</button>
         </div>
     `;
@@ -74,6 +118,7 @@ if (carritoStorage.length > 0) {
     botonComprar.innerText = 'Comprar';
     botonComprar.classList.add('btn', 'btn-comprar');
     containerBtn.appendChild(botonComprar);
+
 
 } else {
     console.log ("if mostrar carrito vacio")
@@ -87,15 +132,45 @@ if (carritoStorage.length > 0) {
 }
 
 const quitarCarrito = (productoid) => {
-    console.log ("carrito storage", carritoStorage)
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: "btn btn-success",
+          cancelButton: "btn btn-danger",
+        },
+        buttonsStyling: false
+      });
+      swalWithBootstrapButtons.fire({
+        title: "¿Quieres quitar este producto del carrito?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Si, quitar",
+        cancelButtonText: "No, cancelar",
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+            
+            const carritoGetItem = localStorage.getItem("carrito")
+            const prodParseado = JSON.parse(carritoGetItem)
+            let carritoFiltrado = prodParseado.filter ((producto) => producto.id !== productoid)
+            console.log ("carrito filtrado", carritoFiltrado)
+            localStorage.setItem("carrito", JSON.stringify(carritoFiltrado))
+            console.log ("carrito storage", carritoStorage)
+            remove.innerHTML(carritoFiltrado)
 
-    const carritoGetItem = localStorage.getItem("carrito")
-    const prodParseado = JSON.parse(carritoGetItem)
-
-    let carritoFiltrado = prodParseado.filter ((producto) => producto.id !== productoid)
-    console.log ("carrito filtrado", carritoFiltrado)
-    
-    localStorage.setItem("carrito", JSON.stringify(carritoFiltrado))
+          swalWithBootstrapButtons.fire({
+            title: "Eliminado del carrito",
+            icon: "success"
+          });
+        } else if (
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire({
+            title: "Cancelado",
+            text: "Mantienes el producto en tu carrito",
+            icon: "error"
+          });
+        }
+      });
 }
 
 
@@ -106,10 +181,24 @@ botonComprar.addEventListener("click", () => {
     carritoStorage.forEach(producto => {
     total += producto.precio;
     });
+
     let mensajeTotal = document.createElement('mensaje-comprar')
     mensajeTotal.innerText = `El total es: $${total}`;
     mensajeTotal.classList.add('mensajes');
     console.log('total', mensajeTotal)
+
+    let botonFinalizar = document.createElement('btn-comprar');
+    botonFinalizar.innerText = 'Finalizar compra';
+    botonFinalizar.classList.add('btn');
+
     carritoContainer.appendChild(mensajeTotal);
+    mensajeTotal.appendChild(botonFinalizar);
+
+    const finalizar = botonFinalizar.onclick = () => {
+        Swal.fire("¡Gracias por tu compra!");
+        localStorage.clear()
+    }
+    finalizar()
 })
+
 

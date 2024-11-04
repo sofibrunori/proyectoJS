@@ -15,7 +15,7 @@
 
 
 /*FLEX*/
-.flex, .inicio-de-sesion-container, .contacto-container, .datos-titulo, .main-productos, .main-index, footer ul,  
+.flex, .container-btn, .inicio-de-sesion-container, .contacto-container, .datos-titulo, .main-productos, .main-index, footer ul,  
 .ver-index {
     display: flex;
     flex-wrap: wrap;
@@ -183,7 +183,6 @@ footer ul li a {
     --bs-btn-disabled-border-color: #000;
 }
 
-
 /*CARRITO VACIO*/
 .carrito-vacio {
     position: fixed;
@@ -217,11 +216,17 @@ footer ul li a {
 }
 .btn-comprar {
     position: sticky;
-    margin-top: -10%;
-    margin-bottom: 5%;
-    left: 40%;
-    width: 20%;
+    left: 43%;
+    margin-top: -30%;
+    margin-bottom: -10%;
+    padding-left: 5%;
+    padding-right: 5%;
 }
+.btn-success, .btn-danger{
+    margin: 3%;
+    padding: 6%;
+}
+
 
 /*INICIO DE SESIÓN*/
  .inicio-de-sesion {
