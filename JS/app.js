@@ -24,11 +24,12 @@ const productosContainer = document.getElementById('cont-productos');
 console.log ("productos", productosContainer)
 
 //FETCH
+
 /*const agregarProductos = async () => {
     try {
-        const buscar = await fetch("./DATA/productos.json")
-        const agregar = await buscar.json()
-        mostrarProductos(agregar)
+        const buscar = await fetch("../DATA/productos.json")
+        .then(response => response.json())
+        mostrarProductos(buscar)
     } catch {
         console.error ("Error al cargar productos")
     }
@@ -49,7 +50,6 @@ if (productosContainer) {
        productosContainer.innerHTML += productoHTML
     });
 }
-//}
 //agregarProductos()
 
 
@@ -173,18 +173,16 @@ botonComprar.addEventListener("click", () => {
     mensajeTotal.classList.add('mensajes');
     console.log('total', mensajeTotal)
 
+    carritoContainer.appendChild(mensajeTotal);
+
     let botonFinalizar = document.createElement('btn-comprar');
     botonFinalizar.innerText = 'Finalizar compra';
     botonFinalizar.classList.add('btn');
 
-    carritoContainer.appendChild(mensajeTotal);
     mensajeTotal.appendChild(botonFinalizar);
 
-    const finalizar = botonFinalizar.onclick = () => {
+    botonFinalizar.addEventListener("click", () => {
         Swal.fire("¡Gracias por tu compra!\n Esperamos verte pronto");
         localStorage.clear()
-    }
-    finalizar()
+    })
 })
-
-
